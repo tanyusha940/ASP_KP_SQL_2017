@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ASP.NET_KP_SQL_2017.Models.VisitorsCategory>
+
+@{
+    ViewBag.Title = "GetAllVisitorsCategory";
+}
+
+<h2>GetAllVisitorsCategory</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Visitor_Category_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Visitor_Category_Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Visitor_Category_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Visitor_Category_Description)
+        </td>
+    </tr>
+}
+
+</table>
