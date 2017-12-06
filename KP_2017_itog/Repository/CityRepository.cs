@@ -1,4 +1,4 @@
-﻿using ASP.NET_KP_SQL_2017.Models;
+﻿using KP_2017_itog.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KP_2017_itog.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,14 @@ namespace KP_2017_itog
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Ref_Types_of_KitchenRepository objType = new Ref_Types_of_KitchenRepository();
+            objType.GetAllTypeOfKitchen();
+            VisitorsCategoryRepository objCateg = new VisitorsCategoryRepository();
+            objCateg.GetAllVisitorsCategory();
+            CountryRepository objCountry = new CountryRepository();
+            objCountry.GetAllCountries();
+            CityRepository objCity = new CityRepository();
+            objCity.GetAllCity();
         }
     }
 }

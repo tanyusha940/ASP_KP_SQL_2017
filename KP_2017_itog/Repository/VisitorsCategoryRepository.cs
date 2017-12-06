@@ -1,4 +1,5 @@
-﻿using ASP.NET_KP_SQL_2017.Models;
+﻿
+using KP_2017_itog.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,7 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace ASP.NET_KP_SQL_2017.Repository
+namespace KP_2017_itog.Repository
 {
     public class VisitorsCategoryRepository
     {

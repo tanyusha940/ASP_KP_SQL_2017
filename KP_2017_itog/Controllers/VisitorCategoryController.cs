@@ -1,12 +1,12 @@
-﻿using ASP.NET_KP_SQL_2017.Models;
-using ASP.NET_KP_SQL_2017.Repository;
+﻿using KP_2017_itog.Models;
+using KP_2017_itog.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ASP.NET_KP_SQL_2017.Controllers
+namespace KP_2017_itog.Controllers
 {
     public class VisitorCategoryController : Controller
     {

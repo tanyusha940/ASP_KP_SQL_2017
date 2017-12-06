@@ -1,4 +1,4 @@
-﻿using ASP.NET_KP_SQL_2017.Models;
+﻿using KP_2017_itog.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,7 +20,7 @@ namespace KP_2017_itog.Repository
 
         }
 
-        public List<Ref_Types_of_Kitchen> GetAllTypeOfKitchen()
+        public  List<Ref_Types_of_Kitchen> GetAllTypeOfKitchen()
         {
             connection();
             List<Ref_Types_of_Kitchen> TypeKitchenList = new List<Ref_Types_of_Kitchen>();
