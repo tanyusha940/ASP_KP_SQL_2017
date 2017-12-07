@@ -43,26 +43,26 @@ namespace KP_2017_itog.Repository
                 return false;
             }
         }
-        public bool Login(Visitors obj)
-        {
-            connection();
-            SqlCommand com = new SqlCommand("Login_Visitors", con);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@name", obj.Visitor_Name);
-            com.Parameters.AddWithValue("@password", obj.Password);
-            //com.Parameters.AddWithValue("@category", obj.Visitor_Category_ID);
+        //public List<Visitors> Login(Visitors obj)
+        //{
+        //    connection();
+        //    List<Visitors> VisitorsList = new List<Visitors>();
+        //    SqlCommand com = new SqlCommand("Login_Visitors", con);
+        //    com.CommandType = CommandType.StoredProcedure;
+        //    SqlDataAdapter da = new SqlDataAdapter(com);
+        //    DataTable dt = new DataTable();
 
-            con.Open();
-            int i = com.ExecuteNonQuery();
-            con.Close();
-            if (i >= 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    con.Open();
+        //    da.Fill(dt);
+        //    con.Close();
+        //    foreach(DataRow dr in dt.Rows)
+        //    {
+        //        new Visitors
+        //        {
+
+        //        };
+        //    }
+        //    return true;
+        //}
     }
 }

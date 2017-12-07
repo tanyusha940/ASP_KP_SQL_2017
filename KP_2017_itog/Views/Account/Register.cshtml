@@ -1,4 +1,4 @@
-﻿@model KP_2017_itog.Models.Visitors
+﻿@model KP_2017_itog.ViewModels.RegistrationViewModel
 
 @{
     ViewBag.Title = "Регистрация";
@@ -12,8 +12,7 @@
             </div>
 
             <div class="panel-body">
-
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
@@ -22,21 +21,24 @@
                     <div class="form-group">
                         <label>Имя</label>
                         <div>
-                            @Html.TextBoxFor(model => model.Visitor_Name, new { @class = "form-control" })
+                            <input type="text" class="form-control" name="Visitor_Name" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Категория</label>
-                        <div>
-                            
-                        </div>
+                        <label>Категория</label><br />
+                        <select class="selectpicker" name="Visitor_Category_ID">
+                            @foreach (var category in Model.Categories)
+                            {
+                                <option value="@category.Visitor_Category_ID">@category.Visitor_Category_Description</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <div class="">
-                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        <div>
+                            <input type="password" class="form-group" name="Password" />
                         </div>
 
                     </div>

@@ -1,5 +1,6 @@
 ﻿using KP_2017_itog.Models;
 using KP_2017_itog.Repository;
+using KP_2017_itog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,29 @@ namespace KP_2017_itog.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly AccountRepository accountRepository;
+        private readonly VisitorsCategoryRepository visitorsCategoryRepository;
+
+        public AccountController()
+        {
+            accountRepository = new AccountRepository();
+            visitorsCategoryRepository = new VisitorsCategoryRepository();
+        }
+
         // GET: Account
         public ActionResult Register()
         {
-            return View();
+            var viewModel = new RegistrationViewModel()
+            {
+                Categories = visitorsCategoryRepository.GetAllVisitorsCategory()
+            };
+            return View(viewModel);
         }
-        //VisitorsCategoryRepository visitorsCategoryRepository = new VisitorsCategoryRepository();
 
         [HttpPost]
         public ActionResult Register(Visitors visitor)
         {
             //visitorsCategoryRepository.GetAllVisitorsCategory();
-            AccountRepository accountRepository = new AccountRepository();
 
             if (accountRepository.RegisterVisitor(visitor))
             {
@@ -31,16 +43,22 @@ namespace KP_2017_itog.Controllers
 
             return RedirectToAction("RegisterVisitor");
         }
+
+
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-        [HttpPost]
-        public ActionResult Login(Visitors visitor, string returnUrl)
-        {
-            AccountRepository accountRepository = new AccountRepository();
-            return View(visitor);
-        }
+        //[HttpPost]
+        //public ActionResult Login(Visitors model, string returnUrl)
+        //{
+        //    AccountRepository accountRepository = new AccountRepository();
+        //    if (ModelState.IsValid)
+        //    {
+        //        var visitor = await UserN
+        //    }
+        //    return View(visitor);
+        //}
     }
 }

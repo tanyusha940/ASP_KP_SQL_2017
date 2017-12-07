@@ -165,6 +165,7 @@
     <Compile Include="Repository\RestaurantRepository.cs" />
     <Compile Include="Repository\VisitorsCategoryRepository.cs" />
     <Compile Include="Repository\VisitorsCommentsRepository.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
