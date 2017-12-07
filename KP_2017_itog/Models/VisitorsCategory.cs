@@ -8,9 +8,10 @@ namespace KP_2017_itog.Models
 {
     public class VisitorsCategory
     {
+        [Required]
         public int Visitor_Category_ID { get; set; }
 
-        [Required(ErrorMessage = "Visitor Categiry description is required")]
+        [Required]
         public string Visitor_Category_Description { get; set; }
     }
 }

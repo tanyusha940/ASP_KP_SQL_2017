@@ -15,12 +15,12 @@ namespace KP_2017_itog.Controllers
         {
             return View();
         }
-        VisitorsCategoryRepository visitorsCategoryRepository = new VisitorsCategoryRepository();
+        //VisitorsCategoryRepository visitorsCategoryRepository = new VisitorsCategoryRepository();
 
         [HttpPost]
         public ActionResult Register(Visitors visitor)
         {
-            visitorsCategoryRepository.GetAllVisitorsCategory();
+            //visitorsCategoryRepository.GetAllVisitorsCategory();
             AccountRepository accountRepository = new AccountRepository();
 
             if (accountRepository.RegisterVisitor(visitor))

@@ -25,7 +25,7 @@ namespace KP_2017_itog.Repository
             connection();
             SqlCommand com = new SqlCommand("Post_Add_Restaurant", con);
             com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@cityId", obj.City_ID.City_ID);
+            com.Parameters.AddWithValue("@cityId", obj.City_ID);
             com.Parameters.AddWithValue("@address", obj.Addresses);
             com.Parameters.AddWithValue("@name", obj.Restaurant_Name);
             com.Parameters.AddWithValue("@description", obj.Restaurant_Description);

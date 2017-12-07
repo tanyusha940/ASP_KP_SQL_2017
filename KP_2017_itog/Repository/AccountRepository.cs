@@ -28,7 +28,7 @@ namespace KP_2017_itog.Repository
            // SqlCommand catVis = new SqlCommand("Get_Visitor_Category")
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@name", obj.Visitor_Name);
-            com.Parameters.AddWithValue("@category", obj.Visitor_Category_ID.Visitor_Category_ID);
+            com.Parameters.AddWithValue("@category", obj.Visitor_Category_ID);
             com.Parameters.AddWithValue("@password", obj.Password);
 
             con.Open();

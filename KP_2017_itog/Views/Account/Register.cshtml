@@ -13,42 +13,40 @@
 
             <div class="panel-body">
 
-                @using (Html.BeginForm())
+            @using (Html.BeginForm())
             {
-                    @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()
 
-                    <div>
-
-
-                        @Html.ValidationSummary(false)
-                        <div class="form-group">
-                            <label>Имя</label>
-                            <div>
-                                @Html.TextBoxFor(model => model.Visitor_Name, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Категория</label>
-                            <div>
-                                @Html.TextBoxFor(model => model.Visitor_Category_ID.Visitor_Category_Description, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                            <label>Пароль</label>
-                            <div class="">
-                                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                            </div>
-
-                        </div>
+                <div>
+                    @Html.ValidationSummary(false)
+                    <div class="form-group">
+                        <label>Имя</label>
                         <div>
-                            <div>
-                                <input type="submit" class="btn btn-primary btn-block" value="Зарегистрировать" />
-                            </div>
+                            @Html.TextBoxFor(model => model.Visitor_Name, new { @class = "form-control" })
                         </div>
                     </div>
-                }
+                    <div class="form-group">
+                        <label>Категория</label>
+                        <div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <div class="">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div>
+                        <div>
+                            <input type="submit" class="btn btn-primary btn-block" value="Зарегистрировать" />
+                        </div>
+                    </div>
+                </div>
+            }
             </div>
         </div>
     </div>
