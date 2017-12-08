@@ -33,15 +33,14 @@ namespace KP_2017_itog.Controllers
         [HttpPost]
         public ActionResult Register(Visitors visitor)
         {
-            //visitorsCategoryRepository.GetAllVisitorsCategory();
-
-            if (accountRepository.RegisterVisitor(visitor))
-            {
-                ViewBag.Message = "Visitor log out successfully";
+            if (ModelState.IsValid)
+            { 
+                if (accountRepository.RegisterVisitor(visitor))
+                {
+                    ViewBag.Message = "Visitor log out successfully";
+                }
             }
-
-
-            return RedirectToAction("RegisterVisitor");
+            return Redirect("/Home/Index");
         }
 
 
@@ -50,15 +49,15 @@ namespace KP_2017_itog.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-        //[HttpPost]
-        //public ActionResult Login(Visitors model, string returnUrl)
-        //{
-        //    AccountRepository accountRepository = new AccountRepository();
-        //    if (ModelState.IsValid)
-        //    {
-        //        var visitor = await UserN
-        //    }
-        //    return View(visitor);
-        //}
+        [HttpPost]
+        public ActionResult Login(Visitors model, string returnUrl)
+        {
+            AccountRepository accountRepository = new AccountRepository();
+            if (ModelState.IsValid)
+            {
+                
+            }
+            return View();
+        }
     }
 }
