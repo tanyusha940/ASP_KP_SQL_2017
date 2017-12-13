@@ -36,25 +36,23 @@ namespace KP_2017_itog.Repository
             connect.Close();
             return true;
         }
-        public Visitors Login(Visitors obj)
+        public bool Login(string Visitor_Name, string Password)
         {
             connection();
+            SqlCommand command = new SqlCommand("Login_Visitors", connect);
             connect.Open();
-            SqlCommand com = connect.CreateCommand();
-            com.CommandText = "select *from Visitors where Visitor_Name = '" + obj.Visitor_Name + "' and Visitor_Password = '" + obj.Password + "'";
-            SqlDataReader dataReader = com.ExecuteReader();
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", Visitor_Name);
+            command.Parameters.AddWithValue("@password", Password);
+            SqlDataReader dr = command.ExecuteReader(CommandBehavior.SingleRow);
 
-            int itemIndex = 0;
-            while (dataReader.Read())
+            if (!dr.HasRows)
             {
-                itemIndex++;
+                connect.Close();
+                return false;
             }
-            //if (itemIndex == 0)
-            //{
-            //    return false;
-            //}
-            return obj;
-
+            connect.Close();
+            return true;
         }
     }
 }
