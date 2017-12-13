@@ -40,6 +40,7 @@ namespace KP_2017_itog.Repository
                 (
                     new Ref_Types_of_Kitchen
                     {
+                        Kitchen_Type_Code = Convert.ToInt32(dr["Kitchen_Type_Code"]),
                         Kitchen_Type_Description = Convert.ToString(dr["Kitchen_Type_Description"])
 
                     }

@@ -22,14 +22,13 @@ namespace KP_2017_itog.Repository
 
         public bool RegisterVisitor(Visitors obj)
         {
-
             connection();
             SqlCommand com = new SqlCommand("Register_Visitor", con);
-           // SqlCommand catVis = new SqlCommand("Get_Visitor_Category")
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@name", obj.Visitor_Name);
             com.Parameters.AddWithValue("@category", obj.Visitor_Category_ID);
             com.Parameters.AddWithValue("@password", obj.Password);
+
 
             con.Open();
             int i = com.ExecuteNonQuery();
@@ -43,26 +42,25 @@ namespace KP_2017_itog.Repository
                 return false;
             }
         }
-        //public List<Visitors> Login(Visitors obj)
-        //{
-        //    connection();
-        //    List<Visitors> VisitorsList = new List<Visitors>();
-        //    SqlCommand com = new SqlCommand("Login_Visitors", con);
-        //    com.CommandType = CommandType.StoredProcedure;
-        //    SqlDataAdapter da = new SqlDataAdapter(com);
-        //    DataTable dt = new DataTable();
+        public Visitors Login(Visitors obj)
+        {
+            connection();
+            con.Open();
+            SqlCommand com = con.CreateCommand();
+            com.CommandText = "select *from Visitors where Visitor_Name = '" + obj.Visitor_Name + "' and Visitor_Password = '" + obj.Password + "'";
+            SqlDataReader dataReader = com.ExecuteReader();
 
-        //    con.Open();
-        //    da.Fill(dt);
-        //    con.Close();
-        //    foreach(DataRow dr in dt.Rows)
-        //    {
-        //        new Visitors
-        //        {
+            int itemIndex = 0;
+            while (dataReader.Read())
+            {
+                itemIndex++;
+            }
+            //if (itemIndex == 0)
+            //{
+            //    return false;
+            //}
+            return obj;
 
-        //        };
-        //    }
-        //    return true;
-        //}
+        }
     }
 }

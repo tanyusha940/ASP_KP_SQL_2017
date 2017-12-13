@@ -1,5 +1,6 @@
 ﻿using KP_2017_itog.Models;
 using KP_2017_itog.Repository;
+using KP_2017_itog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,47 +11,56 @@ namespace KP_2017_itog.Controllers
 {
     public class RestaurantController : Controller
     {
+        private readonly RestaurantRepository restauntRepository;
+        private readonly CityRepository cityRepository;
+        private readonly Ref_Types_of_KitchenRepository ref_Types_Of_KitchenRepository;
+        private readonly CountryRepository countryRepository;
+        
+        public RestaurantController()
+        {
+            restauntRepository = new RestaurantRepository();
+            cityRepository = new CityRepository();
+            countryRepository = new CountryRepository();
+            ref_Types_Of_KitchenRepository = new Ref_Types_of_KitchenRepository();
+
+
+        }
         public ActionResult GetAllRestaurants()
         {
-
-            RestaurantRepository restaurantRepositpry = new RestaurantRepository();
             ModelState.Clear();
-            return View(restaurantRepositpry.GetAllRestaurant());
+            return View(restauntRepository.GetAllRestaurant());
         }
 
         public ActionResult AddRestaurant()
         {
-            return View();
+            var viewModel = new RestaurantViewModel()
+            {
+                City = cityRepository.GetAllCity(),
+                Country = countryRepository.GetAllCountries(),
+                TypeKitchen = ref_Types_Of_KitchenRepository.GetAllTypeOfKitchen()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult AddRestaurant(Restaurants restaurant)
         {
-            try
-            {
+
                 if (ModelState.IsValid)
                 {
-                    RestaurantRepository restaurantRepositpry = new RestaurantRepository();
 
-                    if (restaurantRepositpry.AddRestaurant(restaurant))
-                    {
-                        ViewBag.Message = "Employee details added successfully";
-                    }
+                    restauntRepository.AddRestaurant(restaurant);
+                    
                 }
 
-                return View();
-            }
-            catch
-            {
-                return View();
-            }
+                return View(restaurant);
+
         }
 
         public ActionResult EditEmpDetails(int id)
         {
-            RestaurantRepository restaurantRepositpry = new RestaurantRepository();
 
-            return View(restaurantRepositpry.GetAllRestaurant().Find(x => x.Restaurant_ID == id));
+            return View(restauntRepository.GetAllRestaurant().Find(x => x.Restaurant_ID == id));
 
         }
 
@@ -59,11 +69,10 @@ namespace KP_2017_itog.Controllers
         {
             try
             {
-                RestaurantRepository restaurantRepositpry = new RestaurantRepository();
 
-                restaurantRepositpry.UpdateRestaurant(obj);
+                restauntRepository.UpdateRestaurant(obj);
 
-                return RedirectToAction("GetAllEmpDetails");
+                return RedirectToAction("GetAllRestaurants");
             }
             catch
             {
@@ -76,13 +85,13 @@ namespace KP_2017_itog.Controllers
         {
             try
             {
-                RestaurantRepository restaurantRepositpry = new RestaurantRepository();
-                if (restaurantRepositpry.DeleteRestaurant(id))
+              
+                if (restauntRepository.DeleteRestaurant(id))
                 {
                     ViewBag.AlertMsg = "Employee details deleted successfully";
 
                 }
-                return RedirectToAction("GetAllEmpDetails");
+                return RedirectToAction("GetAllRestaurants");
 
             }
             catch

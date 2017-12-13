@@ -6,6 +6,7 @@ namespace KP_2017_itog.ViewModels
     public class RegistrationViewModel
     {
         public List<VisitorsCategory> Categories { get; set; }
+
         public Visitors Visitor { get; set; }
     }
 }

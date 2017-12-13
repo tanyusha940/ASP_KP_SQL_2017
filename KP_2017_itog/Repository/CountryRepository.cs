@@ -40,6 +40,7 @@ namespace KP_2017_itog.Repository
                 (
                     new Countries
                     {
+                        Country_ID = Convert.ToInt32(dr["Country_ID"]),
                         Country_Name = Convert.ToString(dr["Country_Name"])
                     }
                );

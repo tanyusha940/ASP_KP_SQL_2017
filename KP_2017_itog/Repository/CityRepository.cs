@@ -40,6 +40,7 @@ namespace KP_2017_itog.Repository
                 (
                     new City
                     {
+                        City_ID = Convert.ToInt32(dr["City_ID"]),
                         City_Name = Convert.ToString(dr["City_Name"]),
                     }
                );

@@ -11,7 +11,7 @@ namespace KP_2017_itog.Models
     {
         public int Visitor_ID { get; set; }
        
-        [Required(ErrorMessage = "Категория посетителя не установлена")]
+        //[Required(ErrorMessage = "Категория посетителя не установлена")]
         public int Visitor_Category_ID { get; set; }
 
        [Required(ErrorMessage = "Укажите имя")]
@@ -26,10 +26,10 @@ namespace KP_2017_itog.Models
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [System.Web.Mvc.Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        public string ConfirmPassword { get; set; }
+        //[Required]
+        //[DataType(DataType.Password)]
+        //[System.Web.Mvc.Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        //public string ConfirmPassword { get; set; }
 
 
     }
