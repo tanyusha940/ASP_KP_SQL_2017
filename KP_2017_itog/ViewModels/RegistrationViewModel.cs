@@ -1,5 +1,6 @@
 ﻿using KP_2017_itog.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace KP_2017_itog.ViewModels
 {

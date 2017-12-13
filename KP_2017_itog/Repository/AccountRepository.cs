@@ -1,4 +1,5 @@
 ﻿using KP_2017_itog.Models;
+using KP_2017_itog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,42 +12,35 @@ namespace KP_2017_itog.Repository
 {
     public class AccountRepository
     {
-        private SqlConnection con;
+        private SqlConnection connect;
 
 
         private void connection()
         {
             string constr = ConfigurationManager.ConnectionStrings["KP_2017"].ToString();
-            con = new SqlConnection(constr);
+            connect = new SqlConnection(constr);
         }
 
         public bool RegisterVisitor(Visitors obj)
         {
             connection();
-            SqlCommand com = new SqlCommand("Register_Visitor", con);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@name", obj.Visitor_Name);
-            com.Parameters.AddWithValue("@category", obj.Visitor_Category_ID);
-            com.Parameters.AddWithValue("@password", obj.Password);
+            SqlCommand command = new SqlCommand("Register_Visitor", connect);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", obj.Visitor_Name);
+            command.Parameters.AddWithValue("@category", obj.Visitor_Category_ID);
+            command.Parameters.AddWithValue("@password", obj.Password);
 
 
-            con.Open();
-            int i = com.ExecuteNonQuery();
-            con.Close();
-            if (i >= 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            connect.Open();
+            int i = command.ExecuteNonQuery();
+            connect.Close();
+            return true;
         }
         public Visitors Login(Visitors obj)
         {
             connection();
-            con.Open();
-            SqlCommand com = con.CreateCommand();
+            connect.Open();
+            SqlCommand com = connect.CreateCommand();
             com.CommandText = "select *from Visitors where Visitor_Name = '" + obj.Visitor_Name + "' and Visitor_Password = '" + obj.Password + "'";
             SqlDataReader dataReader = com.ExecuteReader();
 

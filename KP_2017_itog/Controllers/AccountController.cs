@@ -22,7 +22,7 @@ namespace KP_2017_itog.Controllers
             visitorsCategoryRepository = new VisitorsCategoryRepository();
         }
 
-        // GET: Account
+        [AllowAnonymous]
         public ActionResult Register()
         {
             var viewModel = new RegistrationViewModel()
@@ -33,14 +33,19 @@ namespace KP_2017_itog.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Register(Visitors visitor)
         {
             if (ModelState.IsValid)
             {
-                accountRepository.RegisterVisitor(visitor);
-                
+                if(accountRepository.RegisterVisitor(visitor))
+                {
+                    TempData["message"] = $"Пользователь успешно создан";
+                    return RedirectToAction("Login", "Account");
+                }
+                TempData["message"] = $"Пользователь с таким именем уже существует!";
             }
-            return Redirect("/Home/Index");
+            return View(visitor);
         }
 
         [AllowAnonymous]

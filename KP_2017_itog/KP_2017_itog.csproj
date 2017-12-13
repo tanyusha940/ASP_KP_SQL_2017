@@ -183,8 +183,8 @@
     <Compile Include="Repository\RestaurantRepository.cs" />
     <Compile Include="Repository\VisitorsCategoryRepository.cs" />
     <Compile Include="Repository\VisitorsCommentsRepository.cs" />
-    <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
   </ItemGroup>

@@ -1,7 +1,12 @@
 ﻿@model KP_2017_itog.ViewModels.RegistrationViewModel
 
 @{
-    ViewBag.Title = "Регистрация";
+    ViewBag.Title = "Регистрация аккаунта";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-danger">@TempData["message"]</div>
 }
 
 <div class="row">
@@ -12,7 +17,7 @@
             </div>
 
             <div class="panel-body">
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
