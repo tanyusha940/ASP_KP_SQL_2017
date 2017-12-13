@@ -29,6 +29,7 @@ namespace KP_2017_itog.Repository
             command.Parameters.AddWithValue("@name", obj.Visitor_Name);
             command.Parameters.AddWithValue("@category", obj.Visitor_Category_ID);
             command.Parameters.AddWithValue("@password", obj.Password);
+            command.Parameters.AddWithValue("@userRole", "User");
 
 
             connect.Open();
