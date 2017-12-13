@@ -19,19 +19,22 @@ namespace KP_2017_itog.Repository
 
         }
 
-        public bool AddRestaurant(Restaurants obj)
+        public bool AddRestaurant(Restaurants restaurants, Restaurants_Type_of_Kitchen type)
         {
 
             connection();
             SqlCommand com = new SqlCommand("Post_Add_Restaurant", con);
             com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@cityId", obj.City_ID);
-            com.Parameters.AddWithValue("@address", obj.Addresses);
-            com.Parameters.AddWithValue("@name", obj.Restaurant_Name);
-            com.Parameters.AddWithValue("@description", obj.Restaurant_Description);
-            com.Parameters.AddWithValue("@hours", obj.Opening_Hours);
-            com.Parameters.AddWithValue("@details", obj.Other_Details);
-            com.Parameters.AddWithValue("@geom", obj.Add_geom);
+            com.Parameters.AddWithValue("@cityId", restaurants.City_ID);
+            com.Parameters.AddWithValue("@address", restaurants.Addresses);
+            com.Parameters.AddWithValue("@name", restaurants.Restaurant_Name);
+            com.Parameters.AddWithValue("@description", restaurants.Restaurant_Description);
+            com.Parameters.AddWithValue("@hours", restaurants.Opening_Hours);
+            com.Parameters.AddWithValue("@details", restaurants.Other_Details);
+            //         com.Parameters.AddWithValue("@geom", restaurants.Add_geom);
+            com.Parameters.AddWithValue("@typeKitchenId", type.Kitchen_Type_Code);
+            com.Parameters.AddWithValue("@resId", type.Restaurant_ID);
+
 
             con.Open();
             int i = com.ExecuteNonQuery();
@@ -70,7 +73,7 @@ namespace KP_2017_itog.Repository
                         Restaurant_Description = Convert.ToString(dr["Restaurant_Description"]),
                         Addresses = Convert.ToString(dr["Addresses"]),
                         Opening_Hours = Convert.ToString(dr["Opening_Hours"]),
-                        Other_Details = Convert.ToString(dr["Other_Detail"])
+                        Other_Details = Convert.ToString(dr["Other_Details"])
                     });
             }
             return RestaurantsList;
@@ -83,9 +86,11 @@ namespace KP_2017_itog.Repository
             SqlCommand com = new SqlCommand("UpdateRestaurant", con);
 
             com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@resId", obj.Restaurant_ID);
             com.Parameters.AddWithValue("@description", obj.Restaurant_Description);
             com.Parameters.AddWithValue("@hours", obj.Opening_Hours);
             com.Parameters.AddWithValue("@details", obj.Other_Details);
+
             con.Open();
             int i = com.ExecuteNonQuery();
             con.Close();

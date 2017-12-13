@@ -23,14 +23,14 @@
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     @if (User.Identity.IsAuthenticated && !User.Identity.Name.Contains("Admin"))
                     {
-                        <li>@Html.ActionLink("Создать ресторан", "AddRestaurant", "Restaurant")</li>
+                        
                     }
                     @if (User.Identity.Name.StartsWith("Admin"))
                     {
-                        <li>@Html.ActionLink("Текущие заказы", "ViewTours", "Admin")</li>
-                        <li>@Html.ActionLink("Управление турами", "Index", "Tour")</li>
+                        <li>@Html.ActionLink("Создать ресторан", "AddRestaurant", "Restaurant")</li>
+                       
                     }
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
+                    <li>@Html.ActionLink("Рестораны", "GetAllRestaurants", "Restaurant")</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

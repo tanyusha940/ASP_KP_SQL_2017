@@ -11,7 +11,6 @@ namespace KP_2017_itog.ViewModels
         public List<City> City { get; set; }
         public List<Ref_Types_of_Kitchen> TypeKitchen { get; set; }
         public Restaurants Restaurants { get; set; }
-       // public CityViewModel Country{ get; set; }
         public List<Countries> Country { get; set; }
     }
 }

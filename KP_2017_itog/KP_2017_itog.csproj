@@ -252,6 +252,7 @@
     <Content Include="Views\Restaurant\EditRestaurant.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Restaurant\GetAllRestaurants.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

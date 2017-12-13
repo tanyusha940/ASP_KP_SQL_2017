@@ -27,8 +27,13 @@ namespace KP_2017_itog.Controllers
         }
         public ActionResult GetAllRestaurants()
         {
-            ModelState.Clear();
-            return View(restauntRepository.GetAllRestaurant());
+            List<Restaurants> restaurants = new List<Restaurants>();
+            restaurants = restauntRepository.GetAllRestaurant();
+            if(restaurants != null)
+            {
+                return View(restaurants);
+            }
+            return View();
         }
 
         public ActionResult AddRestaurant()
@@ -43,21 +48,20 @@ namespace KP_2017_itog.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddRestaurant(Restaurants restaurant)
+        public ActionResult AddRestaurant(Restaurants restaurant, Restaurants_Type_of_Kitchen type)
         {
-
-                if (ModelState.IsValid)
-                {
-
-                    restauntRepository.AddRestaurant(restaurant);
-                    
+            if (ModelState.IsValid)
+            {
+                if(restauntRepository.AddRestaurant(restaurant, type))
+                {                 
+                    TempData["message"] = $"Ресторан успешно создан";
+                    return RedirectToAction("GetAllRestaurants", "Restaurant");
                 }
-
-                return View(restaurant);
-
+            }
+            return View();
         }
 
-        public ActionResult EditEmpDetails(int id)
+        public ActionResult EditRestaurant(int id)
         {
 
             return View(restauntRepository.GetAllRestaurant().Find(x => x.Restaurant_ID == id));
@@ -67,37 +71,22 @@ namespace KP_2017_itog.Controllers
         [HttpPost]
         public ActionResult EditRestaurant(int id, Restaurants obj)
         {
-            try
-            {
-
+            if (ModelState.IsValid)
+            { 
                 restauntRepository.UpdateRestaurant(obj);
-
-                return RedirectToAction("GetAllRestaurants");
+                return RedirectToAction("GetAllRestaurants", "Restaurant");
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
-        // GET: Employee/DeleteEmp/5
         public ActionResult DeleteEmp(int id)
         {
-            try
+            if (restauntRepository.DeleteRestaurant(id))
             {
-              
-                if (restauntRepository.DeleteRestaurant(id))
-                {
-                    ViewBag.AlertMsg = "Employee details deleted successfully";
-
-                }
-                return RedirectToAction("GetAllRestaurants");
-
+                TempData["message"] = $"Ресторан успешно удален";
+                return RedirectToAction("GetAllRestaurants", "Restaurant");
             }
-            catch
-            {
-                return View();
-            }
+            return View();          
         }
     }
 }

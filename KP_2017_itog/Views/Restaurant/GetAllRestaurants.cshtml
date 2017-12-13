@@ -1,0 +1,64 @@
+﻿@model IEnumerable<KP_2017_itog.Models.Restaurants>
+@{
+    ViewBag.Title = "GetAllRestaurants";
+}
+
+<h2>Список рестаранов</h2>
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success">@TempData["message"]</div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Название ресторана")
+        </th>
+        <th>
+            @Html.DisplayName("Адрес")
+        </th>
+        @*<th>
+                @Html.DisplayName("Кол-во звёзд")
+            </th>*@
+        <th>
+            @Html.DisplayName("Описание")
+        </th>
+        <th>
+            @Html.DisplayName("Часы работы")
+        </th>
+        <th>
+            @Html.DisplayName("Остальные детали")
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.Restaurant_ID)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Addresses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opening_Hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Other_Details)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Удалить", "DiscardOrder", new { id = item.Id })
+                </td>*@
+            @if (User.Identity.Name.StartsWith("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Изменить", "EditRestaurant", new { id = item.Restaurant_ID }) |
+                    @Html.ActionLink("Удалить", "DeleteRestaurant", new { id = item.Restaurant_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+                </td>
+            }
+        </tr>
+    }
+</table>
