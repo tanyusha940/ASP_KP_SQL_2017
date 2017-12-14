@@ -79,14 +79,11 @@ namespace KP_2017_itog.Controllers
             return View();
         }
 
-        public ActionResult DeleteEmp(int id)
+        public ActionResult DeleteRestaurant(int id)
         {
-            if (restauntRepository.DeleteRestaurant(id))
-            {
-                TempData["message"] = $"Ресторан успешно удален";
-                return RedirectToAction("GetAllRestaurants", "Restaurant");
-            }
-            return View();          
+            restauntRepository.DeleteRestaurant(id);
+            TempData["message"] = $"Ресторан успешно удален";
+            return RedirectToAction("GetAllRestaurants", "Restaurant");    
         }
     }
 }
