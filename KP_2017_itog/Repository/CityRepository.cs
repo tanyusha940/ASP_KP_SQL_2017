@@ -20,6 +20,37 @@ namespace KP_2017_itog.Repository
 
         }
 
+        public City GetCity(int id)
+        {
+            string sqlExpression = "GetCityById";
+            City city = null;
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand(sqlExpression, con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter loginParameter = new SqlParameter
+                {
+                    ParameterName = "@countryId",
+                    Value = id
+                };
+                cmd.Parameters.Add(loginParameter);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        city = new City()
+                        {
+                            City_ID = Convert.ToInt32(dr["City_ID"]),
+                            City_Name = Convert.ToString(dr["City_Name"]),
+                        };
+                    }
+                }
+                con.Close();
+                return city;
+            }
+        }
         public List<City> GetAllCity()
         {
             connection();

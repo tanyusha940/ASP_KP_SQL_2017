@@ -61,6 +61,13 @@ namespace KP_2017_itog.Controllers
             return View();
         }
 
+        public JsonResult GetInfo(int country)
+        {
+            var city = cityRepository.GetCity(country);
+            List<string> data = new List<string>();
+            data.Add(city.City_Name);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult EditRestaurant(int id)
         {
 
