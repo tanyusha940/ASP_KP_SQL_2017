@@ -1,0 +1,32 @@
+﻿@model KP_2017_itog.ViewModels.RegistrationViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Личный кабинет</h2>
+<h2>Пользователь @User.Identity.Name</h2>
+<table class="table table-striped">
+    @Html.HiddenFor(model => model.Visitor.Visitor_ID)
+    <tr>
+        <td>Имя:</td>
+        <td>@Html.DisplayFor(modelItem => Model.Visitor.Visitor_Name)</td>
+    </tr>
+    <tr>
+        <td>Категория:</td>
+        <td>@Html.DisplayFor(modelItem => Model.Categories)</td>
+    </tr>
+    <tr>
+        <td>Описание:</td>
+        <td>@Html.DisplayFor(modelItem => Model.Visitor.Visitor_Description)</td>
+    </tr>
+</table>
+<style type="text/css">
+    .dz-max-files-reached {
+        background-color: red;
+    }
+</style>
+
+
+
+
+

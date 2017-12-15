@@ -205,8 +205,9 @@
     <Compile Include="Repository\VisitorsCategoryRepository.cs" />
     <Compile Include="Repository\VisitorsCommentsRepository.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\CityViewModel.cs" />
+    <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantCreateViewModel.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +254,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Restaurant\GetAllRestaurants.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,12 +48,12 @@ namespace KP_2017_itog.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddRestaurant(Restaurants restaurant, Restaurants_Type_of_Kitchen type)
+        public ActionResult AddRestaurant(RestaurantCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if(restauntRepository.AddRestaurant(restaurant, type))
-                {                 
+                if (restauntRepository.AddRestaurant(model))
+                {
                     TempData["message"] = $"Ресторан успешно создан";
                     return RedirectToAction("GetAllRestaurants", "Restaurant");
                 }

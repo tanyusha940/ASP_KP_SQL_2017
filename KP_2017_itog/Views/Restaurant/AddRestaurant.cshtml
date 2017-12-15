@@ -90,8 +90,37 @@
 
 
 </div>
-<script>
+@*<script>
     $('#country').on('change', function () {
         console.log(this.value);
     });
-</script>
+</script>*@
+
+@*@section scripts
+{
+    <script type="text/javascript">
+
+        var button = document.getElementById('button');
+        button.addEventListener('click', function () {
+            var comment = document.getElementById('comment').value.replace(/<[^>]+>/g, '');
+            var wallId = document.getElementById('button').getAttribute('wallId');
+            console.log(wallId);
+            if (comment === '') {
+                return false;
+            }
+            AddComment(wallId, comment);
+        });
+
+        function GetCity(id, city) {
+
+            $.ajax({
+                type: "POST",
+                url: "/Restaurant/AddComment",
+                data: { comment: comment, wallId: id },
+                success: function (data) {
+                    location.reload();
+                }
+            })
+        }
+    </script>
+}*@

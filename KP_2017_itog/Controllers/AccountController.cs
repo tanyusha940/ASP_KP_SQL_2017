@@ -1,10 +1,7 @@
 ﻿using KP_2017_itog.Models;
 using KP_2017_itog.Repository;
 using KP_2017_itog.ViewModels;
-using Microsoft.Owin.Security;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -20,6 +17,10 @@ namespace KP_2017_itog.Controllers
         {
             accountRepository = new AccountRepository();
             visitorsCategoryRepository = new VisitorsCategoryRepository();
+        }
+        public ActionResult Index(int id)
+        {
+            return View(accountRepository.GetAllVisitor().Find(x => x.Visitor_ID == id));
         }
 
         [AllowAnonymous]

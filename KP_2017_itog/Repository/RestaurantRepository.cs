@@ -1,4 +1,5 @@
 ﻿using KP_2017_itog.Models;
+using KP_2017_itog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,7 +20,7 @@ namespace KP_2017_itog.Repository
 
         }
 
-        public bool AddRestaurant(Restaurants restaurants, Restaurants_Type_of_Kitchen type)
+        public bool AddRestaurant(RestaurantCreateViewModel restaurants)
         {
 
             connection();
@@ -32,8 +33,7 @@ namespace KP_2017_itog.Repository
             com.Parameters.AddWithValue("@hours", restaurants.Opening_Hours);
             com.Parameters.AddWithValue("@details", restaurants.Other_Details);
             //         com.Parameters.AddWithValue("@geom", restaurants.Add_geom);
-            com.Parameters.AddWithValue("@typeKitchenId", type.Kitchen_Type_Code);
-            com.Parameters.AddWithValue("@resId", type.Restaurant_ID);
+            com.Parameters.AddWithValue("@typeKitchenId", restaurants.TypeKitchen);
 
 
             con.Open();

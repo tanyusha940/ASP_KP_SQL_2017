@@ -55,5 +55,35 @@ namespace KP_2017_itog.Repository
             connect.Close();
             return true;
         }
+
+        public List<Visitors> GetAllVisitor()
+        {
+            connection();
+            List<Visitors> VisitorList = new List<Visitors>();
+            
+            SqlCommand command = new SqlCommand("GetVisitors", connect);
+            command.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            connect.Open();
+            da.Fill(dt);
+            connect.Close();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                VisitorList.Add(
+                    new Visitors
+                    {
+                        Visitor_ID = Convert.ToInt32(dr["Visitor_ID"]),
+                        Visitor_Name = Convert.ToString(dr["Visitor_Name"]),
+                        Visitor_Category_ID = Convert.ToInt32(dr["Visitor_ID"]),
+                        Visitor_Description = Convert.ToString(dr["Visitor_Description"])
+                    });
+            }
+            
+            connect.Close();
+            return VisitorList;
+        }
     }
 }
