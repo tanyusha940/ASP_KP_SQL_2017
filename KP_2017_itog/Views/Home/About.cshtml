@@ -1,7 +1,32 @@
-﻿@{
+﻿@model KP_2017_itog.ViewModels.GoePointViewModel
+@{
     ViewBag.Title = "About";
 }
+<style>
+    #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+</style>
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>
 <p>Use this area to provide additional information.</p>
+<script>
+    function initMap() {
+        var uluru = { lat: @Model.Lat, lng: @Model.Long };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo1Ib8W0vchfwtWLds3Mc0s3bNksHiGpY&callback=initMap">
+</script>
