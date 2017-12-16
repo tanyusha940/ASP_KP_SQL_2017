@@ -22,8 +22,6 @@ namespace KP_2017_itog.Controllers
             cityRepository = new CityRepository();
             countryRepository = new CountryRepository();
             ref_Types_Of_KitchenRepository = new Ref_Types_of_KitchenRepository();
-
-
         }
         public ActionResult GetAllRestaurants()
         {
@@ -34,6 +32,12 @@ namespace KP_2017_itog.Controllers
                 return View(restaurants);
             }
             return View();
+        }
+
+        public ActionResult GetInfoAboutRestaurant( int id)
+        {
+            var model = restauntRepository.GetAllRestaurant().Find(x => x.Restaurant_ID == id);
+            return View(model);
         }
 
         public ActionResult AddRestaurant()
@@ -48,6 +52,7 @@ namespace KP_2017_itog.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddRestaurant(RestaurantCreateViewModel model)
         {
             if (ModelState.IsValid)

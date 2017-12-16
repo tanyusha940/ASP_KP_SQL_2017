@@ -68,13 +68,14 @@ namespace KP_2017_itog.Repository
                 RestaurantsList.Add(
 
                     new Restaurants
-                    {   
+                    {
                         Restaurant_ID = Convert.ToInt32(dr["Restaurant_ID"]),
                         Restaurant_Name = Convert.ToString(dr["Restaurant_Name"]),
                         Restaurant_Description = Convert.ToString(dr["Restaurant_Description"]),
                         Addresses = Convert.ToString(dr["Addresses"]),
                         Opening_Hours = Convert.ToString(dr["Opening_Hours"]),
-                        Other_Details = Convert.ToString(dr["Other_Details"])
+                        Other_Details = Convert.ToString(dr["Other_Details"]),
+                        TypeKitchen = Convert.ToString(dr["Kitchen_Type_Description"])
                     });
             }
             return RestaurantsList;

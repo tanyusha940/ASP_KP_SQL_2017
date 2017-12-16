@@ -16,7 +16,7 @@
         <div class="col-md-12 well">
             @Html.HiddenFor(model => item.Restaurant_ID)
             <p>
-                <h3>Название: @Html.DisplayFor(modelItem => item.Restaurant_Name)</h3>
+                <h3>Название: @Html.ActionLink(item.Restaurant_Name, "GetInfoAboutRestaurant", "Restaurant", new {id = item.Restaurant_ID }, null) </h3>
                 <h4>Адрес: @Html.DisplayFor(modelItem => item.Addresses)</h4>
 
                 Описание: @Html.DisplayFor(modelItem => item.Restaurant_Description)

@@ -20,6 +20,6 @@
 
         public string Add_geom { get; set; }
 
-
+        public string TypeKitchen { get; set; }
     }
 }

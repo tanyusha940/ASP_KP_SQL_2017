@@ -18,6 +18,7 @@ namespace KP_2017_itog.Controllers
             accountRepository = new AccountRepository();
             visitorsCategoryRepository = new VisitorsCategoryRepository();
         }
+        [Authorize]
         public ActionResult Index(int id)
         {
             return View(accountRepository.GetAllVisitor().Find(x => x.Visitor_ID == id));

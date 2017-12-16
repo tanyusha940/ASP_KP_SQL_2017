@@ -1,0 +1,28 @@
+﻿@model KP_2017_itog.Models.Restaurants
+
+<meta charset="utf-8" />
+<h2>Ресторан </h2>
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success">@TempData["message"]</div>
+}
+
+    <div class="row">
+        <div class="col-md-12 well">
+            @Html.HiddenFor(model =>model.Restaurant_ID)
+            <p>
+                <h3>Название:@Html.DisplayFor(model => model.Restaurant_Name) </h3>
+                <h4>Адрес: @Html.DisplayFor(model => model.Addresses)</h4>
+
+                Описание: @Html.DisplayFor(model => model.Restaurant_Description)
+                <br>
+                Часы работы: @Html.DisplayFor(model => model.Opening_Hours)
+                <br>
+                Другое: @Html.DisplayFor(model => model.Other_Details)
+                <br>
+                Тип ресторана: @Html.DisplayFor(model => model.TypeKitchen)
+
+            </p>
+        </div>
+    </div>
+
