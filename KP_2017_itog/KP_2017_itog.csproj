@@ -210,6 +210,8 @@
     <Compile Include="Repository\VisitorsCategoryRepository.cs" />
     <Compile Include="Repository\VisitorsCommentsRepository.cs" />
     <Compile Include="Services\InitializationBingMaps.cs" />
+    <Compile Include="ViewModels\ChoiceOfRestaurant.cs" />
+    <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\GoePointViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
@@ -264,6 +266,9 @@
     <Content Include="Views\Restaurant\GetAllRestaurants.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Restaurant\GetInfoAboutRestaurant.cshtml" />
+    <Content Include="Views\Restaurant\AddComment.cshtml" />
+    <Content Include="Views\Restaurant\GetChoiceOfRestaurant.cshtml" />
+    <Content Include="Views\Restaurant\Choice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

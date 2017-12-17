@@ -7,22 +7,63 @@
     <div class="alert alert-success">@TempData["message"]</div>
 }
 
-    <div class="row">
-        <div class="col-md-12 well">
-            @Html.HiddenFor(model =>model.Restaurant_ID)
-            <p>
-                <h3>Название:@Html.DisplayFor(model => model.Restaurant_Name) </h3>
-                <h4>Адрес: @Html.DisplayFor(model => model.Addresses)</h4>
+<div class="row">
+    <div class="col-md-12 well">
+        @Html.HiddenFor(model => model.Restaurant_ID)
+        <p>
+            <h3>Название:@Html.DisplayFor(model => model.Restaurant_Name) </h3>
+            <h4>Адрес: @Html.DisplayFor(model => model.Addresses)</h4>
+            Описание: @Html.DisplayFor(model => model.Restaurant_Description)<br>
+            Часы работы: @Html.DisplayFor(model => model.Opening_Hours)<br>
+            Другое: @Html.DisplayFor(model => model.Other_Details)<br>
+            Тип ресторана: @Html.DisplayFor(model => model.TypeKitchen)<br>
 
-                Описание: @Html.DisplayFor(model => model.Restaurant_Description)
-                <br>
-                Часы работы: @Html.DisplayFor(model => model.Opening_Hours)
-                <br>
-                Другое: @Html.DisplayFor(model => model.Other_Details)
-                <br>
-                Тип ресторана: @Html.DisplayFor(model => model.TypeKitchen)
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span>Новый коментарий</span><br>
+                <textarea id="Comment_Text" rows="5" class="form-control"></textarea><br>
+                <button class="btn btn-primary" id="button" restaurantId="@Model.Restaurant_ID">Добавить</button>
+            }
+            <div class="comments">
 
-            </p>
-        </div>
+                <div>
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-body">
+                                @Html.DisplayFor(model => model.CommentText);
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
     </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
 
+        var button = document.getElementById('button');
+        button.addEventListener('click', function () {
+            var Comment_Text = document.getElementById('Comment_Text').value.replace(/<[^>]+>/g, '');
+            var restaurantId = document.getElementById('button').getAttribute('restaurantId');
+            console.log(restaurantId);
+            if (Comment_Text === '') {
+                return false;
+            }
+            AddComment(restaurantId, Comment_Text);
+        });
+
+        function AddComment(Visitor_Comment_ID, Comment_Text) {
+
+            $.ajax({
+                type: "POST",
+                url: "/Comment/AddComment",
+                data: { model: Comment_Text, restaurantId: Visitor_Comment_ID },
+                success: function (data) {
+                    location.reload();
+                }
+            })
+        }
+    </script>
+}

@@ -81,6 +81,38 @@ namespace KP_2017_itog.Repository
             return RestaurantsList;
         }
 
+        public List<Restaurants> GetChoiceOfRestaurant(int? cityId, int? typeKit)
+        {
+            connection();
+            List<Restaurants> RestaurantsList = new List<Restaurants>();
+
+            SqlCommand com = new SqlCommand("ChoiceOfRestaurant", con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@cityId", cityId);
+            com.Parameters.AddWithValue("@typeKit", typeKit);
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            da.Fill(dt);
+            con.Close();
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                RestaurantsList.Add(
+
+                    new Restaurants
+                    {
+                        Restaurant_ID = Convert.ToInt32(dr["Restaurant_ID"]),
+                        Restaurant_Name = Convert.ToString(dr["Restaurant_Name"]),
+                        Restaurant_Description = Convert.ToString(dr["Restaurant_Description"]),
+                        Addresses = Convert.ToString(dr["Addresses"]),
+                        Opening_Hours = Convert.ToString(dr["Opening_Hours"]),
+                        Other_Details = Convert.ToString(dr["Other_Details"]),
+                    });
+            }
+            return RestaurantsList;
+        }
         public bool UpdateRestaurant(Restaurants obj)
         {
 

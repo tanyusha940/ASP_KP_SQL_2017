@@ -33,7 +33,34 @@ namespace KP_2017_itog.Controllers
             }
             return View();
         }
-
+        public ActionResult Choice()
+        {
+            var view = new RestaurantViewModel()
+            {
+                City = cityRepository.GetAllCity(),
+                Country = countryRepository.GetAllCountries(),
+                TypeKitchen = ref_Types_Of_KitchenRepository.GetAllTypeOfKitchen()
+            };
+            return View(view); 
+        }
+        public ActionResult GetChoiceOfRestaurant(int? cityId, int? typeKit)
+        {
+            cityId = 9;
+            typeKit = 16;
+            var view = new RestaurantViewModel()
+            {
+                City = cityRepository.GetAllCity(),
+                Country = countryRepository.GetAllCountries(),
+                TypeKitchen = ref_Types_Of_KitchenRepository.GetAllTypeOfKitchen()
+            };
+            List<Restaurants> restaurants = new List<Restaurants>();
+            restaurants = restauntRepository.GetChoiceOfRestaurant(cityId, typeKit);
+            if (restaurants != null)
+            {
+                return View(restaurants);
+            }
+            return View();
+        }
         public ActionResult GetInfoAboutRestaurant( int id)
         {
             var model = restauntRepository.GetAllRestaurant().Find(x => x.Restaurant_ID == id);

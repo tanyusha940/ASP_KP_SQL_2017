@@ -1,0 +1,38 @@
+﻿@model KP_2017_itog.Models.Restaurants
+
+@if (User.Identity.IsAuthenticated)
+{
+    <span>Новый коментарий</span><br>
+    <textarea id="Comment_Text" rows="5" class="form-control"></textarea><br>
+    <button class="btn btn-primary" id="button" restaurantId="@Model.Restaurant_ID" @*userId="@Model.Visitor_ID"*@>Добавить</button>
+}
+@section scripts
+{
+    <script type="text/javascript">
+
+    var button = document.getElementById('button');
+    button.addEventListener('click', function () {
+        var Comment_Text = document.getElementById('Comment_Text').value.replace(/<[^>]+>/g, '');
+        var restaurantId = document.getElementById('button').getAttribute('restaurantId');
+        //var userId = document.getElementById('button').getAttribute('userId');
+        console.log(restaurantId);
+        //console.log(userId);
+        if (Comment_Text === '') {
+            return false;
+        }
+        AddComment(restaurantId, Comment_Text/*, userId*/);
+    });
+
+        function AddComment(Visitor_Comment_ID, Comment_Text/*, Visitor_Comment_ID*/) {
+
+        $.ajax({
+            type: "POST",
+            url: "/Comment/AddComment",
+            data: { model: Comment_Text, restaurantId: Visitor_Comment_ID/*, userId: Visitor_Comment_ID*/ },
+            success: function (data) {
+                location.reload();
+            }
+        })
+    }
+    </script>
+}

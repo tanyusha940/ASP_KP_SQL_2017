@@ -1,4 +1,5 @@
 ﻿using KP_2017_itog.Models;
+using KP_2017_itog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,7 +20,7 @@ namespace KP_2017_itog.Repository
             con = new SqlConnection(constr);
         }
  
-        public bool AddComment(VisitorsComments obj)
+        public bool AddComment(CommentViewModel obj)
         {
             connection();
             SqlCommand com = new SqlCommand("AddComment", con);

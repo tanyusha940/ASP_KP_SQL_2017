@@ -21,5 +21,7 @@
         public string Add_geom { get; set; }
 
         public string TypeKitchen { get; set; }
+
+        public string CommentText { get; set; }
     }
 }

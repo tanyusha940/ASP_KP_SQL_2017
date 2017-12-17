@@ -1,0 +1,46 @@
+﻿@model IEnumerable<KP_2017_itog.Models.Restaurants>
+
+    <h2>GetChoiceOfRestaurant</h2>
+
+    @*<div class="panel-body">
+            <div class="form-group">
+                <label>Город</label><br />
+                <select class="selectpicker" name="City_ID">
+                    @foreach (var city in Model.City)
+                    {
+                        <option value="@city.City_ID">@city.City_Name</option>
+                        }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Тип кухни</label><br />
+                <select class="selectpicker" name="TypeKitchen">
+                    @foreach (var type in Model.TypeKitchen)
+                    {
+                        <option value="@type.Kitchen_Type_Code">@type.Kitchen_Type_Description</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" class="btn btn-primary btn-block" value="Найти" />
+                </div>
+            </div>
+        </div>*@
+
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-12 well">
+                @Html.HiddenFor(model => item.Restaurant_ID)
+                <p>
+                    <h3>Название:@Html.DisplayFor(modelItem => item.Restaurant_Name) </h3>
+                    <h4>Адрес: @Html.DisplayFor(modelItem => item.Addresses)</h4>
+                    Описание: @Html.DisplayFor(modelItem => item.Restaurant_Description)<br>
+                    Часы работы: @Html.DisplayFor(modelItem => item.Opening_Hours)<br>
+                    Другое: @Html.DisplayFor(modelItem => item.Other_Details)<br>
+            </div>
+
+        </div>
+    }
+
