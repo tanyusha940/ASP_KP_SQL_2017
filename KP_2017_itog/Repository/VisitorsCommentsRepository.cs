@@ -20,14 +20,14 @@ namespace KP_2017_itog.Repository
             con = new SqlConnection(constr);
         }
  
-        public bool AddComment(CommentViewModel obj)
+        public bool AddComment(Restaurants obj,int? resId, int? userId)
         {
             connection();
             SqlCommand com = new SqlCommand("AddComment", con);
             com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@restId", obj.Restaurant_ID);
-            com.Parameters.AddWithValue("@visitorId", obj.Visitor_ID);
-            com.Parameters.AddWithValue("@text", obj.Comment_Text);
+            com.Parameters.AddWithValue("@restId", resId);
+            com.Parameters.AddWithValue("@visitorId", userId);
+            com.Parameters.AddWithValue("@text", obj.CommentText);
 
             con.Open();
             int i = com.ExecuteNonQuery();
@@ -42,13 +42,15 @@ namespace KP_2017_itog.Repository
             }            
         }    
 
-        public List<VisitorsComments> GetAllComments()
+        public List<VisitorsComments> GetAllComments(int? resId)
         {
+            
             connection();
             List<VisitorsComments> visitorsComments = new List<VisitorsComments>();
 
             SqlCommand com = new SqlCommand("Get_Comments", con);
             com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@resId", resId);
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
 
@@ -61,8 +63,8 @@ namespace KP_2017_itog.Repository
                 visitorsComments.Add(
                     new VisitorsComments
                     {
-                        Comment_Date = Convert.ToDateTime(dr["date"]),
-                        Comment_Text = Convert.ToString(dr["text"])                      
+                        Comment_Date = Convert.ToString(dr["Comment_Date"]),
+                        CommentText = Convert.ToString(dr["CommentText"])                      
                     });
             }
             return visitorsComments;

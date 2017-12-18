@@ -1,7 +1,25 @@
-﻿
+﻿@model IEnumerable<KP_2017_itog.Models.VisitorsComments>
 @{
     ViewBag.Title = "GetComment";
 }
 
-<h2>GetComment</h2>
+<h2>Комментарии</h2>
+
+@foreach (var com in Model)
+{
+    <div>
+        <div class="comment">
+            <div class="comment-header">
+                <strong>
+                    @Html.DisplayFor(c => com.Visitor_ID)
+                </strong>оставил комментарий
+                <time class="pull-right timeago"> @Html.DisplayFor(c => com.Comment_Date)</time>
+            </div>
+            <div class="comment-body">
+                Текст комментария:
+                @Html.DisplayFor(c => com.CommentText)
+            </div>
+        </div>
+    </div>
+}
 

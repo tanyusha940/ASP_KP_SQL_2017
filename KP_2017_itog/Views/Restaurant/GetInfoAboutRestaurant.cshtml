@@ -18,11 +18,14 @@
             Другое: @Html.DisplayFor(model => model.Other_Details)<br>
             Тип ресторана: @Html.DisplayFor(model => model.TypeKitchen)<br>
             Количество звезд Мишлен: @Html.DisplayFor(model => model.Star)<br>
+            <div>
+                 <button class="btn btn-primary btn-block" onclick="location.href='@Url.Action("GetComment", "Comment",  new { id = Model.Restaurant_ID }, null)';return false;">Просмотр комментариев</button>
+            </div>
 
             @if (User.Identity.IsAuthenticated)
             {
                 <span>Новый коментарий</span><br>
-                <textarea id="Comment_Text" rows="5" class="form-control"></textarea><br>
+                <textarea id="CommentText" rows="5" class="form-control"></textarea><br>
                 <button class="btn btn-primary" id="button" restaurantId="@Model.Restaurant_ID">Добавить</button>
             }
             <div class="comments">
@@ -46,21 +49,21 @@
 
         var button = document.getElementById('button');
         button.addEventListener('click', function () {
-            var Comment_Text = document.getElementById('Comment_Text').value.replace(/<[^>]+>/g, '');
+            var CommentText = document.getElementById('CommentText').value.replace(/<[^>]+>/g, '');
             var restaurantId = document.getElementById('button').getAttribute('restaurantId');
             console.log(restaurantId);
-            if (Comment_Text === '') {
+            if (CommentText === '') {
                 return false;
             }
-            AddComment(restaurantId, Comment_Text);
+            AddComment(restaurantId, CommentText);
         });
 
-        function AddComment(Visitor_Comment_ID, Comment_Text) {
+        function AddComment(Visitor_Comment_ID, CommentText) {
 
             $.ajax({
                 type: "POST",
                 url: "/Comment/AddComment",
-                data: { model: Comment_Text, restaurantId: Visitor_Comment_ID },
+                data: { model: CommentText, restaurantId: Visitor_Comment_ID },
                 success: function (data) {
                     location.reload();
                 }

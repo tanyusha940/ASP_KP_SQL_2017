@@ -26,17 +26,24 @@ namespace KP_2017_itog.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult AddComment(CommentViewModel model)
+        public ActionResult AddComment(Restaurants model, int? resId, int? userId)
         {
+            userId = 1;
+            resId = 2;
             //var user = accountRepository.GetAllVisitor().Find(x => x.Visitor_ID == userId);
-            visitorsCommentsRepository.AddComment(model);
+            visitorsCommentsRepository.AddComment(model,resId, userId);
             return View();
         }
-        public ActionResult GetComment()
+        public ActionResult GetComment(int? resId)
         {
+            resId = 2;
             List<VisitorsComments> visitorComments = new List<VisitorsComments>();
-            var model = visitorsCommentsRepository.GetAllComments();
-            return View(model);
+            var model = visitorsCommentsRepository.GetAllComments(resId);
+            if(model != null)
+            {
+                return View(model);
+            }
+            return View();
         }
     }
 }

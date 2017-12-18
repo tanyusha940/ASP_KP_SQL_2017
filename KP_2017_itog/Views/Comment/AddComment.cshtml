@@ -2,7 +2,7 @@
 
 @Html.HiddenFor(model => model.restarant.Restaurant_ID)
     <h2>Новый коментарий</h2><br>
-    <textarea id="Comment_Text" rows="5" class="form-control"></textarea><br>
+    <textarea id="CommentText" rows="5" class="form-control"></textarea><br>
     <button class="btn btn-primary" id="button" restaurantId="@Model.restarant.Restaurant_ID" @*userId="@Model.Visitor_ID">Добавить</button>
 
 @section scripts
@@ -11,23 +11,23 @@
 
     var button = document.getElementById('button');
     button.addEventListener('click', function () {
-        var Comment_Text = document.getElementById('Comment_Text').value.replace(/<[^>]+>/g, '');
+        var CommentText = document.getElementById('CommentText').value.replace(/<[^>]+>/g, '');
         var restaurantId = document.getElementById('button').getAttribute('restaurantId');
         //var userId = document.getElementById('button').getAttribute('userId');
         console.log(restaurantId);
         //console.log(userId);
-        if (Comment_Text === '') {
+        if (CommentText === '') {
             return false;
         }
-        AddComment(restaurantId, Comment_Text/*, userId*/);
+        AddComment(restaurantId, CommentText/*, userId*/);
     });
 
-        function AddComment(Visitor_Comment_ID, Comment_Text/*, Visitor_Comment_ID*/) {
+        function AddComment(Visitor_Comment_ID, CommentText/*, Visitor_Comment_ID*/) {
 
         $.ajax({
             type: "POST",
             url: "/Comment/AddComment",
-            data: { model: Comment_Text, restaurantId: Visitor_Comment_ID/*, userId: Visitor_Comment_ID*/ },
+            data: { model: CommentText, restaurantId: Visitor_Comment_ID/*, userId: Visitor_Comment_ID*/ },
             success: function (data) {
                 location.reload();
             }

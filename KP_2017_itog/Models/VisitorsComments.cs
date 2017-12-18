@@ -10,8 +10,8 @@ namespace KP_2017_itog.Models
 
         public int Visitor_ID { get; set; }
 
-        public DateTime Comment_Date{ get; set; }
+        public string Comment_Date{ get; set; }
 
-        public string Comment_Text { get; set; }
+        public string CommentText { get; set; }
     }
 }

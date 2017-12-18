@@ -14,7 +14,7 @@ namespace KP_2017_itog.ViewModels
 
         public int Visitor_ID { get; set; }
 
-        public string Comment_Text { get; set; }
+        public string CommentText { get; set; }
 
         public Restaurants restarant { get; set; }
     }
