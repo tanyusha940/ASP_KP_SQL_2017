@@ -19,22 +19,23 @@ namespace KP_2017_itog.Controllers
             accountRepository = new AccountRepository();
         }
 
-        public ActionResult Index()
+        public ActionResult AddComment()
         {
             return View();
         }
 
         [HttpPost]
-        public void AddComment(CommentViewModel model, int restaurantId/*, int userId*/)
+        [Authorize]
+        public ActionResult AddComment(CommentViewModel model)
         {
             //var user = accountRepository.GetAllVisitor().Find(x => x.Visitor_ID == userId);
             visitorsCommentsRepository.AddComment(model);
-            
+            return View();
         }
-        public ActionResult GetComment(int id)
+        public ActionResult GetComment()
         {
             List<VisitorsComments> visitorComments = new List<VisitorsComments>();
-            var model = visitorsCommentsRepository.GetAllComments().Find(x => x.Visitor_ID == id);
+            var model = visitorsCommentsRepository.GetAllComments();
             return View(model);
         }
     }

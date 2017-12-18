@@ -266,13 +266,13 @@
     <Content Include="Views\Restaurant\GetAllRestaurants.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Restaurant\GetInfoAboutRestaurant.cshtml" />
-    <Content Include="Views\Restaurant\AddComment.cshtml" />
+    <Content Include="Views\Comment\AddComment.cshtml" />
     <Content Include="Views\Restaurant\GetChoiceOfRestaurant.cshtml" />
     <Content Include="Views\Restaurant\Choice.cshtml" />
+    <Content Include="Views\Comment\GetComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

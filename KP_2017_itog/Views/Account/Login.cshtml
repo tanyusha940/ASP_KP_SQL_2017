@@ -2,52 +2,52 @@
 @{
     ViewBag.Title = "Вход в аккаунт";
 }
-<h2>@ViewBag.Title.</h2>
+
 @if (TempData["message"] != null)
 {
     <div class="alert alert-success">@TempData["message"]</div>
 }
 <div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    <div class="col-md-4 col-md-offset-4">
+        <div class="panel-heading">
+            <h2>@ViewBag.Title.</h2>
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                <h4>Используйте свой аккаунт, чтобы зайти.</h4>
-                <hr />
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Visitor_Name, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Visitor_Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Visitor_Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    @Html.AntiForgeryToken()
+                    <h4>Используйте свой аккаунт, чтобы зайти.</h4>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Visitor_Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Visitor_Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Visitor_Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Войти" class="btn btn-default" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Создать новый аккаунт", "Register")
-                </p>
-            }
-        </section>
-    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Войти" class="btn btn-primary btn-block" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+       </div> 
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

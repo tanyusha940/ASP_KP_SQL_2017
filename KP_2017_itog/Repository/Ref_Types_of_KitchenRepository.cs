@@ -25,7 +25,7 @@ namespace KP_2017_itog.Repository
             connection();
             List<Ref_Types_of_Kitchen> TypeKitchenList = new List<Ref_Types_of_Kitchen>();
 
-            SqlCommand com = new SqlCommand("Get_Ref_Type_of_Kitchen", con);
+            SqlCommand com = new SqlCommand("Select_Ref_Type_of_Kitchen", con);
             com.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();

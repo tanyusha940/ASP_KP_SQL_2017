@@ -1,11 +1,10 @@
-﻿@model KP_2017_itog.Models.Restaurants
+﻿@*@model KP_2017_itog.ViewModels.CommentViewModel
 
-@if (User.Identity.IsAuthenticated)
-{
-    <span>Новый коментарий</span><br>
+@Html.HiddenFor(model => model.restarant.Restaurant_ID)
+    <h2>Новый коментарий</h2><br>
     <textarea id="Comment_Text" rows="5" class="form-control"></textarea><br>
-    <button class="btn btn-primary" id="button" restaurantId="@Model.Restaurant_ID" @*userId="@Model.Visitor_ID"*@>Добавить</button>
-}
+    <button class="btn btn-primary" id="button" restaurantId="@Model.restarant.Restaurant_ID" @*userId="@Model.Visitor_ID">Добавить</button>
+
 @section scripts
 {
     <script type="text/javascript">
@@ -35,4 +34,4 @@
         })
     }
     </script>
-}
+}*@

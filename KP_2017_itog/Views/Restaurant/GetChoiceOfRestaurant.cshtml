@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<KP_2017_itog.Models.Restaurants>
 
-    <h2>GetChoiceOfRestaurant</h2>
+    <h2>Результаты поиска</h2>
 
     @*<div class="panel-body">
             <div class="form-group">
@@ -39,6 +39,7 @@
                     Описание: @Html.DisplayFor(modelItem => item.Restaurant_Description)<br>
                     Часы работы: @Html.DisplayFor(modelItem => item.Opening_Hours)<br>
                     Другое: @Html.DisplayFor(modelItem => item.Other_Details)<br>
+                    Количество звезд Мишлен: @Html.DisplayFor(model => item.Star)<br>
             </div>
 
         </div>

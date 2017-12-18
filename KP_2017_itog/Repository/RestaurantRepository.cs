@@ -34,6 +34,7 @@ namespace KP_2017_itog.Repository
             com.Parameters.AddWithValue("@details", restaurants.Other_Details);
             //         com.Parameters.AddWithValue("@geom", restaurants.Add_geom);
             com.Parameters.AddWithValue("@typeKitchenId", restaurants.TypeKitchen);
+            com.Parameters.AddWithValue("@star", restaurants.Star);
 
 
             con.Open();
@@ -109,6 +110,7 @@ namespace KP_2017_itog.Repository
                         Addresses = Convert.ToString(dr["Addresses"]),
                         Opening_Hours = Convert.ToString(dr["Opening_Hours"]),
                         Other_Details = Convert.ToString(dr["Other_Details"]),
+                        Star = Convert.ToInt32(dr["StarMichelin"])
                     });
             }
             return RestaurantsList;

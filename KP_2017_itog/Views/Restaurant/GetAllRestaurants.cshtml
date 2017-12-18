@@ -22,15 +22,10 @@
                 Описание: @Html.DisplayFor(modelItem => item.Restaurant_Description)<br>
                 Часы работы: @Html.DisplayFor(modelItem => item.Opening_Hours)<br>
                 Другое: @Html.DisplayFor(modelItem => item.Other_Details)<br>
-
-            @*<p>
-                @Html.Partial("_LoginPartial")
-                <div class="panel panel-primary">
-                    <div class="page">
-                        Количество комментариев: @Html.DisplayFor(modelItem => item.)
-                    </div>
-                </div>
-            </p>*@
+                @*Количество звезд Мишлен: @Html.DisplayFor(modelItem => item.Star)<br>*@
+                @*<div>
+                    <button class="btn btn-primary btn-block" onclick="location.href='@Url.Action("AddComment", "Comment",  new { id = item.Restaurant_ID }, null)';return false;">Просмотр комментариев</button>
+                </div>*@
         </div>
         
 

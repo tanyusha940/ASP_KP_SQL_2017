@@ -14,7 +14,7 @@ namespace KP_2017_itog.ViewModels
 
         public string Addresses { get; set; }
 
-        public float Ranking_Number { get; set; }
+        public int Star { get; set; }
 
         public string Restaurant_Name { get; set; }
 
